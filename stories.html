@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Stories</title>
+	<link rel="shortcut icon" href="https://icons.iconarchive.com/icons/aniket-suvarna/box-regular/16/bx-user-circle-icon.png">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<style>
+
+/*--- MORPH ROSTER - TESSISAMESS - 2023 ---*/
+/*-- Find more fun stuff at: tessisamess.insanejournal.com --*/
+
+/* REPLACEMENTS */
+
+:root{
+	--bg-color: #0a0a0a;
+	--bg-img: url()center;
+
+	--borders: #222;
+	--content-bg: #000;
+	--more-info-bg: rgba(0,0,0,0.6);
+
+	--text: #fff;
+	--body-text: 12px;
+	--body-font: calibri,arial,sans-serif;
+
+	--headings: #ffedf3;
+	--heading-text: 40px;
+	--heading-font: Bulgarry,times,serif;
+	--subtitle-text: 10px;
+
+	--header-title: 30px;
+	--header-links: 10px;
+
+	--margin: 5px;
+	--padding: 15px;
+
+	--accent1: #B71515;
+	--accent2: #999;
+
+	--header-height: 50px;
+
+	--char-radius: 40px;
+	--icon-radius: 100%;
+
+	--char-width: 500px;
+	--char-height: 425px;
+	--char-icon: 55px;
+
+}
+
+
+/* GENERAL */
+
+@font-face{font-family:Bulgarry;src:url(https://dl.dropbox.com/s/k1qo9z6034a4pqt/John-Bulgarry.otf);}
+
+::selection{background:var(--accent1);color:var(--lightest);}
+::-moz-selection{background:var(--accent1);color:var(--lightest);}
+
+::-webkit-scrollbar-track{background:var(--bg-color);}
+::-webkit-scrollbar{width:5px;background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--accent1);border:2px solid var(--bg-color);border-radius:5px;}
+
+*, *:before, *:after{box-sizing:border-box;-webkit-transition:all 0.5s ease-in-out;-moz-transition:all 0.5s ease-in-out;-ms-transition:all 0.5s ease-in-out;-o-transition:all 0.5s ease-in-out;transition:all 0.5s ease-in-out;}
+body{margin:0;background:var(--bg-color) var(--bg-img);background-size:cover;font-family:var(--body-font);color:var(--text);font-size:var(--body-text);line-height:1.5;text-shadow:1px 1px 0 rgba(0,0,0,0.5);}
+h1,h2,h3{font-family:var(--heading-font);font-weight:normal;margin:0;line-height:0;color:var(--headings);}
+
+img{max-width:100%;}
+
+a{text-decoration:none;color:var(--accent1);}
+a:hover{color:var(--accent2);}
+
+
+/* HEADER */
+
+header{height:var(--header-height);background:var(--content-bg);border-bottom:1px solid var(--borders);display:flex;align-items:center;justify-content:flex-start;padding:0 calc(var(--header-height) / 2);color:var(--accent2);}
+
+header .icon{width:calc(var(--header-height) / 1.4);height:calc(var(--header-height) / 1.4);background:rgba(0,0,0,0.1);border-radius:var(--icon-radius);object-fit:cover;object-position:center;margin:0 10px 0 0;}
+
+header h1{font-size:var(--header-title);}
+
+header nav{margin:0 0 0 auto;font-size:var(--header-links);text-transform:uppercase;letter-spacing:3px;font-weight:bold;}
+header nav a{margin:0 8px;}
+header nav a:last-of-type{margin:0 0 0 8px;}
+header nav a:hover{}
+
+
+/* CONTAINER */
+
+.characters{display:flex;align-items:center;justify-content:center;height:calc(100vh - var(--header-height));}
+.inactive{position:fixed;top:var(--header-height);left:0;right:0;bottom:0;margin:0;-moz-appearance:none;appearance:none;}
+
+
+/* CHARACTER BLOCKS */
+
+.block{position:relative;display:flex;align-items:flex-end;flex-direction:row-reverse;height:var(--char-height);margin:0 var(--margin);padding:var(--padding);border-radius:var(--char-radius);background-size:cover!important;min-width:calc(var(--char-icon) + var(--padding) + var(--padding));}
+.block[style*='()']{background:var(--borders)!important;}
+
+
+/* SLIDER */
+
+.open, .close{position:absolute;left:var(--padding);bottom:var(--padding);width:var(--char-icon);height:var(--char-icon);margin:0;cursor:pointer;-moz-appearance:none;appearance:none;}
+.open:checked{display:none;}
+.close{display:none;}
+.open:checked + .close{display:block;}
+.block .icon{position:absolute;left:var(--padding);bottom:var(--padding);width:var(--char-icon);height:var(--char-icon);background:rgba(0,0,0,0.1);border-radius:var(--icon-radius);object-fit:cover;object-position:center;}
+
+
+/* TITLES */
+
+.head{width:0;overflow:hidden;height:var(--char-icon);display:flex;flex-direction:column;justify-content:center;white-space:nowrap;}
+.head h3{font-size:var(--heading-text);line-height:0.3;}
+.head .sub{font-size:var(--subtitle-text);text-transform:uppercase;letter-spacing:3px;font-weight:bold;}
+
+.open:checked ~ .head{width:var(--char-width);padding:0 0 0 calc(var(--char-icon) + var(--padding));}
+.close:checked ~ .head{width:0;}
+
+/* MORE INFO */
+
+.more, .less{position:absolute;top:var(--padding);right:var(--padding);cursor:pointer;-moz-appearance:none;appearance:none;}
+.more:after, .less:after{content:'i';font-style:italic;font-size:15px;font-weight:bold;font-family:georgia,serif;border:1px solid;display:block;width:20px;height:20px;line-height:20px;text-align:center;border-radius:100%;}
+
+.inactive:checked ~ .more, .more:checked{display:none;}
+.open:not(:checked) ~ .less, .less{display:none;}
+.more:checked + .less{display:block;}
+
+.more-info{opacity:0;transform:scale(0);position:absolute;top:calc(var(--char-icon) + var(--padding) + var(--padding));right:calc(var(--char-icon) + var(--padding) + var(--padding));bottom:calc(var(--char-icon) + var(--padding) + var(--padding));left:calc(var(--char-icon) + var(--padding) + var(--padding));background:var(--more-info-bg);padding:var(--padding);overflow:auto;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);}
+
+.more:checked ~ .more-info{opacity:1;transform:scale(1);}
+
+.less:checked ~ .more-info, .open:not(:checked) ~ .more, .open:not(:checked) ~ .more-info{opacity:0;transform:scale(0);}
+
+
+/* CREDIT */
+
+.credit{position:fixed;left:0;bottom:20px;background:var(--content-bg);border:1px solid var(--borders);border-right:3px solid var(--accent1);padding:5px;font-weight:bold;font-size:8px;text-transform:uppercase;letter-spacing:3px;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;color:var(--accent1);}
+
+</style>
+
+</head>
+
+<body>
+
+	<header>
+		<h1>Stories</h1>
+	</header>
+
+	<form class="characters">
+
+		<input type="radio" name="slide" class="inactive"> <!--DELETE to DISABLE closing the slider when clicking away from the character list-->
+
+
+
+		<!--CHARACTER-->
+		<section class="block" style="background:url(img/hmau1.png)center;">
+
+			<!--ICON-->
+			<img src="img/esticon.png" class="icon">
+
+			<!--CONTROLS-->
+			<input type="radio" name="slide" class="open">
+			<input type="radio" name="slide" class="close">
+
+			<!--TITLE & SUBTITLE-->
+			<div class="head">
+				<h3><a href="stories/heta.html">Hetalia</a></h3>
+				<div class="sub">Last Updated: March 2024</div>
+			</div>
+
+		</section>
+		
+				<!--CHARACTER-->
+		<section class="block" style="background:url(img/sms1.png)center;">
+
+			<!--ICON-->
+			<img src="img/cosmosicon.png" class="icon">
+
+			<!--CONTROLS-->
+			<input type="radio" name="slide" class="open">
+			<input type="radio" name="slide" class="close">
+
+			<!--TITLE & SUBTITLE-->
+			<div class="head">
+				<h3>Sailor Moon</h3>
+				<div class="sub">Coming Soon</div>
+			</div>
+
+		</section>
+		
+				<!--CHARACTER-->
+		<section class="block" style="background:url(img/stockholm.png)center;">
+
+			<!--ICON-->
+			<img src="img/greenbuildings.png" class="icon">
+
+			<!--CONTROLS-->
+			<input type="radio" name="slide" class="open">
+			<input type="radio" name="slide" class="close">
+
+			<!--TITLE & SUBTITLE-->
+			<div class="head">
+				<h3><a href="stories/original.html">Original</a></h3>
+				<div class="sub">Last Updated: November 2015</div>
+			</div>
+
+		</section>
+		
+				<!--CHARACTER-->
+		<section class="block" style="background:url(img/moon.png)center;">
+
+			<!--ICON-->
+			<img src="img/lillies.avif" class="icon">
+
+			<!--CONTROLS-->
+			<input type="radio" name="slide" class="open">
+			<input type="radio" name="slide" class="close">
+
+			<!--TITLE & SUBTITLE-->
+			<div class="head">
+				<h3><a href="stories/poetry.html">Poetry</a></h3>
+				<div class="sub">Last Updated: January 2013</div>
+			</div>
+
+		</section>
+		
+				<!--CHARACTER-->
+		<section class="block" style="background:url(img/garden.png)center;">
+
+			<!--ICON-->
+			<img src="img/mapleicon.png" class="icon">
+
+			<!--CONTROLS-->
+			<input type="radio" name="slide" class="open">
+			<input type="radio" name="slide" class="close">
+
+			<!--TITLE & SUBTITLE-->
+			<div class="head">
+				<h3><a href="stories/old.html">Oldies</a></h3>
+				<div class="sub">Archived stories still available online</div>
+			</div>
+
+		</section>
+
+
+
+	</form>
+
+
+
+	<!-- CREDIT - DO NOT REMOVE -->
+	<a href="https://tessisamess.insanejournal.com/153771.html" class="credit">CODING</a>
+
+</body>
+</html>
